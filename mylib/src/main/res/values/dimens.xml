@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--pull_header.xml -->
+    <dimen name="itemSize">100dp</dimen>
+    <dimen name="header_size">13sp</dimen>
+    <dimen name="header_image_width">13dip</dimen>
+    <dimen name="header_image_height">26dip</dimen>
+
+</resources>
