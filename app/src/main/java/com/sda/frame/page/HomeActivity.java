@@ -13,13 +13,16 @@ import com.sda.frame.presenter.ArticleListPresenter;
 import com.sda.frame.view.ArticleView;
 import com.sda.lib.HttpCore.DataResponse;
 
+import net.tsz.afinal.FinalActivity;
+import net.tsz.afinal.annotation.view.ViewInject;
+
 
 public class HomeActivity extends AppCompatActivity implements ArticleView {
 
     Context context ;
     ArticleListPresenter articleListPresenter ;
 
-//    @ViewInject(id = R.id.listview)
+    @ViewInject(id = R.id.listview)
     TextView listView ;
 
     @Override
@@ -27,7 +30,7 @@ public class HomeActivity extends AppCompatActivity implements ArticleView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         context =HomeActivity.this ;
-//        FinalActivity.initInjectedView(this);
+        FinalActivity.initInjectedView(this);
 
 //        articleListPresenter = new ArticleListCompl(this);
 //        articleListPresenter.init(context,listView);
@@ -39,11 +42,11 @@ public class HomeActivity extends AppCompatActivity implements ArticleView {
     private void loadData() {
         MyApplication app = (MyApplication) getApplication();
 
-        app.pdc.getArticleList2(context, new DataResponse() {
+        app.pdc.getArticleList(context, new DataResponse() {
             @Override
             public void onSucc(Object response) {
-//                VersionData data = (VersionData) response;
-//                listView.setText(data.getDsc());
+                VersionData data = (VersionData) response;
+                listView.setText(listView.getText().toString()+"\n\n\n@@@@@@@@@@@@@@@"+data.getDsc());
             }
 
             @Override
@@ -52,11 +55,13 @@ public class HomeActivity extends AppCompatActivity implements ArticleView {
             }
         });
 
-        app.pdc.getArticleList(context, new DataResponse() {
+        app.pdc.getArticleList2(context, new DataResponse() {
             @Override
             public void onSucc(Object response) {
-                VersionData data = (VersionData) response;
-                listView.setText(data.getDsc());
+//                VersionData data = (VersionData) response;
+//                listView.setText(data.getDsc());
+                String msg = (String) response;
+                listView.setText(listView.getText().toString()+"\n\n\n@@@@@@@@@@@@@@@"+msg);
             }
 
             @Override

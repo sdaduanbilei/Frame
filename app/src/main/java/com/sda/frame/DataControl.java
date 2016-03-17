@@ -18,18 +18,13 @@ import com.sda.lib.util.Logs;
  * Created by scorpio on 16/3/2.
  */
 public class DataControl  {
-
-    public MyHttp client =null  ;
-
-    public DataControl(MyHttp http) {
-        client = http ;
+    public DataControl(Context context) {
     }
 
     public  void getArticleList(Context context , final DataResponse dr){
         RequestParams params = new RequestParams();
-        params.setCookie("App=1");
         params.put("act","GetVersion");
-        client.get(context, "", params, new TextHandler() {
+        MyHttp.get(context, "", params, new TextHandler() {
             @Override
             public void onSuccess(int header, Object response) {
                 Logs.Debug("list>>>>>>>>>>>>" + response.toString());
@@ -50,18 +45,18 @@ public class DataControl  {
 
     public  void getArticleList2(Context context , final DataResponse dr){
         RequestParams params = new RequestParams();
-        params.setCookie("App=1");
         params.put("act","GetHome");
         params.put("cityid","530102");
-        client.get(context,"http://m.9ji.com/app/1_0/ProductSearch.aspx",params, new TextHandler() {
+        MyHttp.get(context,"",params, new TextHandler() {
             @Override
             public void onSuccess(int header, Object response) {
                 Logs.Debug("list>>>>>>>>>>>>"+response.toString());
                 JSONObject json = JSON.parseObject(response.toString());
-                if (json.getInteger("stats")==1){
+//                if (json.getInteger("stats")==1){
 //                    VersionData data = new Gson().fromJson(json.getJSONObject("data").toString(),VersionData.class);
 //                    dr.onSucc(data);
-                }
+//                }
+                dr.onSucc(response);
             }
 
             @Override
