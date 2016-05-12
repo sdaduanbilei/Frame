@@ -19,7 +19,7 @@ import java.util.Date;
 
 @SuppressLint("SimpleDateFormat")
 public class FileUtil {
-	public static String SaveFolder = "e_zhebao";
+	public static String SaveFolder = "oa";
 	
 	public static void init(String saveFolder) {
 		if(saveFolder!=null) {

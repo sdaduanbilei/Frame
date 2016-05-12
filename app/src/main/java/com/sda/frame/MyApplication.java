@@ -3,8 +3,12 @@ package com.sda.frame;
 import android.app.Application;
 
 
+import com.sda.frame.other.request.DataControl;
 import com.sda.lib.HttpCore.MyHttp;
+import com.sda.lib.event.BusProvider;
 import com.sda.lib.util.AsyncImage;
+import com.sda.lib.util.FileUtil;
+import com.sda.lib.util.FixUtil;
 
 
 /**
@@ -22,9 +26,8 @@ public class MyApplication extends Application {
         MyHttp.init(getApplicationContext(), BASE_URL);
         pdc = new DataControl(getApplicationContext());
         AsyncImage.init(getApplicationContext());
+        FileUtil.init("oa");
+        FixUtil.init(getApplicationContext());
 
-        //
-//        OkHttpFinalConfiguration.Builder  builder= new OkHttpFinalConfiguration.Builder();
-//        OkHttpFinal.getInstance().init(builder.build());
     }
 }
